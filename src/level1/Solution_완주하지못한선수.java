@@ -26,7 +26,7 @@ package level1;
 
 import java.util.Arrays;
 
-class Solution {
+class Solution_완주하지못한선수 {
     public String solution(String[] participant, String[] completion) {
         Arrays.sort(participant);
         Arrays.sort(completion);
