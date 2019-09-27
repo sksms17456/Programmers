@@ -26,20 +26,26 @@
 //스킬 트리: 유저가 스킬을 배울 순서 ↩
 package level2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution_스킬트리 {
-	public int solution(String skill, String[] skill_trees) {
-		int size = skill_trees.length;
-		int answer = 0;		
-		for(int i = 0; i<size; i++) {
-			int[] arr = new int[skill.length()];
-			String cur = String.valueOf(skill.charAt(i));
-			for(int j=0; j<arr.length; j++) {
-				if(skill_trees[i].contains(cur)) {
-					arr[j] = skill_trees[i].indexOf(cur);
-				}
-			}
-			
-		}		
-		return answer;
+	public static void main(String[] args) throws Exception{
+		String skill = "CBD";
+		String[] skill_trees = {"BACDE", "CBADF", "AECB", "BDA"};
+		System.out.println(solution(skill, skill_trees));
 	}
+	static int solution(String skill, String[] skill_trees) {
+		int answer = 0;
+		Map<Character, Integer> map = new HashMap<>();		
+		for(int i=0; i<skill.length(); i++) {
+			map.put(skill.charAt(i), i);
+		}
+		for(int i=0, len = skill_trees.length; i<len; i++) {
+			String temp_tree = skill_trees[i];
+			int tree_idx = 0;
+			
+		}
+        return answer;
+    }
 }

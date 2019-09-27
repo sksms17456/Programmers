@@ -28,21 +28,43 @@
 //6개의 문서(A, B, C, D, E, F)가 인쇄 대기목록에 있고 중요도가 1 1 9 1 1 1 이므로 C D E F A B 순으로 인쇄합니다.
 package level2;
 
-import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.LinkedList;
 
 public class Solution_프린터 {
 	public static void main(String[] args) {
-		int[] priorities = {2,1,3,2};
+		int[] priorities = { 2, 1, 3, 2 };
 		int location = 2;
 //		int[] priorities = {1,1,9,1,1,1};
 //		int location = 0;
 		System.out.println(solution(priorities, location));
 	}
-	
+
 	static int solution(int[] priorities, int location) {
-		PriorityQueue<int[]> queue = new PriorityQueue<>();
-        int answer = 0;
-        return answer;
-    }
+		int answer = 1;
+		int[] cnt = new int[11];
+		int len = priorities.length;
+		LinkedList<int[]> list = new LinkedList<>();
+		for (int i = 0; i < len; i++) {
+			int value = priorities[i];
+			cnt[value]++;
+			list.offer(new int[] { i, value });
+		}
+		top: while (!list.isEmpty()) {
+			int[] temp = list.poll();
+			int idx = temp[0];
+			int value = temp[1];
+			for (int i = value + 1; i < 11; i++) {
+				if (cnt[i] > 0) {
+					list.offer(new int[] { idx, value });
+					continue top;
+				}
+			}
+			if (idx == location) {
+				break;
+			}
+			cnt[value]--;
+			answer++;
+		}
+		return answer;
+	}
 }
