@@ -26,26 +26,39 @@
 //스킬 트리: 유저가 스킬을 배울 순서 ↩
 package level2;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Solution_스킬트리 {
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 		String skill = "CBD";
-		String[] skill_trees = {"BACDE", "CBADF", "AECB", "BDA"};
+		String[] skill_trees = { "BACDE", "CBADF", "AECB", "BDA" };
 		System.out.println(solution(skill, skill_trees));
 	}
+
 	static int solution(String skill, String[] skill_trees) {
 		int answer = 0;
-		Map<Character, Integer> map = new HashMap<>();		
-		for(int i=0; i<skill.length(); i++) {
-			map.put(skill.charAt(i), i);
+		Set<Character> skill_set = new HashSet<>();
+		Set<String> skill_tree_set = new HashSet<>();
+		String skill_tree = "";
+		for (int i = 0; i < skill.length(); i++) {
+			skill_set.add(skill.charAt(i));
+			skill_tree += skill.charAt(i);
+			skill_tree_set.add(skill_tree);
 		}
-		for(int i=0, len = skill_trees.length; i<len; i++) {
-			String temp_tree = skill_trees[i];
-			int tree_idx = 0;
-			
+		for (int i = 0; i < skill_trees.length; i++) {
+			String temp_skill = skill_trees[i];
+			String compare = "";
+			for (int j = 0; j < temp_skill.length(); j++) {
+				char get_skill = temp_skill.charAt(j);
+				if (skill_set.contains(get_skill)) {
+					compare += get_skill;
+				}
+			}
+			if (skill_tree_set.contains(compare) || compare.equals("")) {
+				answer++;
+			}
 		}
-        return answer;
-    }
+		return answer;
+	}
 }
