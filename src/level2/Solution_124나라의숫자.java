@@ -22,15 +22,9 @@ import java.util.Map;
 
 public class Solution_124나라의숫자 {
 	public static void main(String[] args) {
-//		int n = 1;
-//		int n = 2;
-//		int n = 3;
-//		int n = 4;
 		for(int n=1; n<50; n++) {
 			System.out.println("n : "+n + " : "  + solution(n));
-			
 		}
-//			System.out.println(solution(10));
 	}
 
 	static String solution(int n) {
@@ -44,10 +38,19 @@ public class Solution_124나라의숫자 {
 		}else {
 			n -= mod;			
 		}
-		int v = 9;
 		StringBuilder sb = new StringBuilder();
 		sb.append(map.get(mod));
+		int v = 9;
 		while(true) {
+			if(n == 0) break;
+			int m = n%v;
+			sb.insert(0, map.get(n%v/(v/3)));
+			if(m==0) {
+				n-=v;
+			}else {
+				n-=m;
+			}
+			v*=3;
 		}
 		String answer = sb.toString();
 		return answer;
