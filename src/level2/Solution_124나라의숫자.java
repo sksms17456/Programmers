@@ -22,8 +22,8 @@ import java.util.Map;
 
 public class Solution_124나라의숫자 {
 	public static void main(String[] args) {
-		for(int n=1; n<50; n++) {
-			System.out.println("n : "+n + " : "  + solution(n));
+		for (int n = 1; n < 50; n++) {
+			System.out.println("n : " + n + " : " + solution(n));
 		}
 	}
 
@@ -32,25 +32,26 @@ public class Solution_124나라의숫자 {
 		map.put(0, "4");
 		map.put(1, "1");
 		map.put(2, "2");
-		int mod = n%3;
-		if(mod==0) {
-			n-=3;
-		}else {
-			n -= mod;			
+		int mod = n % 3;
+		if (mod == 0) {
+			n -= 3;
+		} else {
+			n -= mod;
 		}
 		StringBuilder sb = new StringBuilder();
 		sb.append(map.get(mod));
 		int v = 9;
-		while(true) {
-			if(n == 0) break;
-			int m = n%v;
-			sb.insert(0, map.get(n%v/(v/3)));
-			if(m==0) {
-				n-=v;
-			}else {
-				n-=m;
+		while (true) {
+			if (n == 0)
+				break;
+			int m = n % v;
+			sb.insert(0, map.get(n % v / (v / 3)));
+			if (m == 0) {
+				n -= v;
+			} else {
+				n -= m;
 			}
-			v*=3;
+			v *= 3;
 		}
 		String answer = sb.toString();
 		return answer;
